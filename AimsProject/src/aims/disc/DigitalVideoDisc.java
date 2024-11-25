@@ -35,6 +35,15 @@ public class DigitalVideoDisc {
         this.length = length;
         this.cost = cost;
     }
+    @Override
+    public String toString() {
+        return "DVD - " + title + " - " + category + " - " + director + " - " + length + ": " + cost + " $";
+    }
+
+    public boolean isMatch(String title) {
+        return this.title.toLowerCase().contains(title.toLowerCase());
+    }
+
     public int getId() {
         return id;
     }
