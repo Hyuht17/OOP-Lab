@@ -1,6 +1,8 @@
 package aims.disc;
 
 public class DigitalVideoDisc {
+    private static int nbDigitalVideoDiscs = 0;
+    private int id;
     private String title;
     private String category;
     private String director;
@@ -9,6 +11,7 @@ public class DigitalVideoDisc {
 
     public DigitalVideoDisc(String title) {
         super();
+        this.id = ++nbDigitalVideoDiscs; // Increment the counter and assign the unique id
         this.title = title;
     }
 
@@ -19,18 +22,30 @@ public class DigitalVideoDisc {
     }
 
     public DigitalVideoDisc(String title, String category, String director, float cost) {
-        this.title = title;
+        this(title);
         this.category = category;
         this.director = director;
         this.cost = cost;
     }
 
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-        this.title = title;
+        this(title);
         this.category = category;
         this.director = director;
         this.length = length;
         this.cost = cost;
+    }
+    @Override
+    public String toString() {
+        return "DVD - " + title + " - " + category + " - " + director + " - " + length + ": " + cost + " $";
+    }
+
+    public boolean isMatch(String title) {
+        return this.title.toLowerCase().contains(title.toLowerCase());
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
