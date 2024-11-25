@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Lab01/onlyExercise6/AddTwoMatrices/AddTwoMatrices.iml" filepath="$PROJECT_DIR$/Lab01/onlyExercise6/AddTwoMatrices/AddTwoMatrices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab01/onlyExercise6/DaysOfMonth/DaysOfMonth.iml" filepath="$PROJECT_DIR$/Lab01/onlyExercise6/DaysOfMonth/DaysOfMonth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab01/onlyExercise6/DisplayTriangle/DisplayTriangle.iml" filepath="$PROJECT_DIR$/Lab01/onlyExercise6/DisplayTriangle/DisplayTriangle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab01/onlyExercise6/JavaBasic/JavaBasic.iml" filepath="$PROJECT_DIR$/Lab01/onlyExercise6/JavaBasic/JavaBasic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab01/Lab01.iml" filepath="$PROJECT_DIR$/Lab01/Lab01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/OtherProjects.iml" filepath="$PROJECT_DIR$/.idea/OtherProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab01/onlyExercise6/SortandSum/SortandSum.iml" filepath="$PROJECT_DIR$/Lab01/onlyExercise6/SortandSum/SortandSum.iml" />
+    </modules>
+  </component>
+</project>
