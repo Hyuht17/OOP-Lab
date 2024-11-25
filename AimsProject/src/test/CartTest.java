@@ -1,5 +1,6 @@
-package aims.cart;
+package test;
 
+import aims.cart.Cart;
 import aims.disc.DigitalVideoDisc;
 
 public class CartTest {
