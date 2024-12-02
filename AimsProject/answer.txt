@@ -1,0 +1,39 @@
+OOP Lab 04
+Họ và tên: Lê Bá Ngọc Hiểu
+MSSV: 20225627
+
+9.	Constructors of whole classes and parent classes
+Question 1: Which classes are aggregates of other classes? Checking all constructors of whole classes if they initialize for their parts?
+Answer: Trong AimsProject, lớp media là một lớp tổng hợp (aggregate) của Media (bao gồm các lớp con như Book, DigitalVideoDisc) vì nó chứa danh sách các đối tượng Media. Các đối tượng Media có thể tồn tại độc lập với Order và được thêm vào thông qua phương thức như addMedia() hoặc thông qua constructor nhận danh sách Media làm tham số. Ngoài ra, lớp Disc cũng được xem là tổng hợp các thuộc tính length và director, mặc dù đây là các phần tử logic hơn là các lớp riêng biệt. Khi kiểm tra các constructor, có thể thấy các lớp tổng hợp thường khởi tạo hoặc chấp nhận đối tượng thành phần thông qua tham số, điều này khẳng định mối quan hệ tổng hợp.
+
+10.	Unique item in a list
+Question 2: When overriding the equals() method of the Object class, you will have to cast the Object parameter obj to the type of Object that you are dealing with. For example, in the Media class, you must cast the Object obj to a Media, and then check the equality of the two objects’ attributes as the above requirements (i.e. title for Media; title and length for Track). If the passing object is not an instance of Media, what happens?
+Answer: Nếu đối tượng truyền vào không phải là một instance của Media (hoặc Track), phương thức equals() sẽ kiểm tra bằng lệnh instanceof. Nếu điều kiện không thỏa mãn, phương thức sẽ trả về false, tức đối tượng không bằng nhau. Điều này giúp ngăn chặn lỗi ép kiểu sai và đảm bảo chỉ so sánh các đối tượng phù hợp.
+
+11.	Polymorphism with toString() method
+Explain:
+Khi gọi phương thức toString() trên từng phần tử của danh sách mediaList, Java sẽ sử dụng đa hình để gọi phương thức toString() tương ứng với loại đối tượng cụ thể (Book, DigitalVideoDisc, CompactDisc). Mặc dù danh sách được khai báo là kiểu Media, nhưng các đối tượng thực sự bên trong danh sách quyết định hành vi của phương thức. Điều này minh họa đa hình ở mức hành vi, giúp mã linh hoạt và dễ mở rộng mà không cần sửa đổi logic in ra.
+
+12.
+Class Implementing Comparable Interface
+
+Lớp Media nên triển khai Comparable<Media> nếu muốn sử dụng phương thức compareTo() để sắp xếp theo một tiêu chí mặc định.
+Implement compareTo
+
+Triển khai compareTo để so sánh Media dựa trên một tiêu chí, ví dụ:
+@Override
+public int compareTo(Media o) {
+    return this.title.compareTo(o.title); // So sánh theo tiêu đề
+}
+Two Ordering Rules
+
+Không thể hỗ trợ đồng thời hai quy tắc sắp xếp trong một lớp triển khai Comparable. Để làm điều đó, cần sử dụng Comparator.
+Different Ordering for DVDs
+
+Thêm Comparator dành riêng cho DigitalVideoDisc:
+public static final Comparator<DigitalVideoDisc> COMPARE_BY_TITLE_LENGTH_COST = Comparator
+        .comparing(DigitalVideoDisc::getTitle)
+        .thenComparing(Comparator.comparing(DigitalVideoDisc::getLength).reversed())
+        .thenComparing(DigitalVideoDisc::getCost);
+Sử dụng comparator này khi cần.
+

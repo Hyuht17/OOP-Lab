@@ -1,7 +1,7 @@
 package test;
 
 import aims.cart.Cart;
-import aims.disc.DigitalVideoDisc;
+import aims.media.DigitalVideoDisc;
 
 public class CartTest {
     public static void main(String[] args) {
@@ -13,9 +13,9 @@ public class CartTest {
         DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin", "Animation", "John Musker", 90, 18.99f);
 
         // Add DVDs to cart
-        cart.addDigitalVideoDisc(dvd1);
-        cart.addDigitalVideoDisc(dvd2);
-        cart.addDigitalVideoDisc(dvd3);
+        cart.addMedia(dvd1);
+        cart.addMedia(dvd2);
+        cart.addMedia(dvd3);
 
         // Print cart
         cart.printCart();
