@@ -1,47 +1,64 @@
 package aims.store;
 
-import aims.disc.DigitalVideoDisc;
+import aims.media.DigitalVideoDisc;
+import aims.media.Media;
+
+import java.util.ArrayList;
 
 public class Store {
     public static final int MAX_ITEMS_IN_STORE = 100;
-    private DigitalVideoDisc itemsInStore[] = new DigitalVideoDisc[MAX_ITEMS_IN_STORE];
-    private int qtyInStore = 0;
+    private ArrayList<Media> itemsInStore = new ArrayList<Media>();
 
-    public void addDVD (DigitalVideoDisc disc){
-        if (qtyInStore < MAX_ITEMS_IN_STORE){
-            itemsInStore[qtyInStore] = disc;
-            qtyInStore++;
-            System.out.println("The disc has been added");
+    public void addMedia (Media media){
+        if (itemsInStore.size() < MAX_ITEMS_IN_STORE){
+            itemsInStore.add(media);
+            System.out.println("The media has been added");
         }
         else{
             System.out.println("The store is full");
         }
     }
 
-    public void removeDVD(String title){
+    public void removeMedia(Media media) {
         int findIndex = -1;
-        for (int i = 0; i < qtyInStore; i++) {
-            if (itemsInStore[i].getTitle().equalsIgnoreCase(title)) {
-                findIndex = i;
-                break;
-            }
-        }
+        String title = media.getTitle();
+        findIndex = itemsInStore.indexOf(itemsInStore.equals(title));
 
         if (findIndex != -1) {
-            for (int i = findIndex; i < qtyInStore - 1; i++) {
-                itemsInStore[i] = itemsInStore[i + 1];
-            }
-            itemsInStore[qtyInStore - 1] = null;
-            qtyInStore--;
-            System.out.println("The DVD has been removed from the store.");
+            itemsInStore.remove(findIndex);
+            System.out.println("The Media has been removed from the store.");
         } else {
-            System.out.println("No DVD with the title \"" + title + "\" was found in the store.");
+            System.out.println("No Meida with the title \"" + title + "\" was found in the store.");
         }
     }
 
     public void listDVDs(){
-        for (int i = 0; i < qtyInStore; i++) {
-            System.out.println(itemsInStore[i].toString());
+        for (Media media : itemsInStore) {
+            System.out.println(media.toString());
         }
+    }
+
+    public void printStore(){
+        System.out.println("***********************CART***********************");
+        System.out.println("Ordered Items:");
+        float totalCost = 0;
+        for (int i = 0; i < itemsInStore.size(); i++){
+            System.out.println((i + 1) + "." + itemsInStore.get(i).toString());
+            totalCost += itemsInStore.get(i).getCost();
+        }
+        System.out.println("Total cost: " + totalCost);
+        System.out.println("*************************************************");
+    }
+
+    public Media searchByTitle(String title){
+        Media findMedia = null;
+        for (Media media : itemsInStore){
+            if (media.getTitle().toLowerCase().contains(title.toLowerCase()))
+            {
+                findMedia = media;
+                break;
+            }
+        }
+        return findMedia;
     }
 }
