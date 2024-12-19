@@ -1,50 +1,76 @@
 package aims.media;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class Book extends Media {
 
-    private List<String> authors = new ArrayList<String>();
+    private ArrayList<String> authors = new ArrayList<String>();
 
-    public Book(int id, String title, String category, float cost, List<String> authors) {
-        setId(id);
-        setTitle(title);
-        setCategory(category);
-        setCost(cost);
-        for (String author : authors) {
-            addAuthor(author);
-        }
+    public Book() {
+        super();
     }
 
-    public Book(int id, String title, String category, float cost) {
-        setId(id);
-        setTitle(title);
-        setCategory(category);
-        setCost(cost);
+    public Book(String title) {
+        super(title);
+    }
+
+    public Book(String title, String category, float cost) {
+        super(title, category, cost);
     }
 
     public void addAuthor(String authorName) {
-        if(!authors.contains(authorName))
+        if (!authors.contains(authorName)) {
             authors.add(authorName);
+        }
     }
 
     public void removeAuthor(String authorName) {
-        if(authors.contains(authorName))
-            authors.remove(authorName);
+        authors.remove(authorName);
     }
 
-
-    public List<String> getAuthors() {
+    public ArrayList<String> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<String> authors) {
-        this.authors = authors;
+    public String getDetails() {
+        return String.format("---Book---\nTitle: %s\nCategory: %s\nAuthor(s): %s\nCost: %.2f $\n", title,
+                category, String.join(", ", authors), cost).replaceAll(" null | 0 ", " Unknown ");
     }
 
     @Override
     public String toString() {
-        return "Book - " + getTitle() + " - " + getCategory() + " - " + getCost() + "$ - Authors: " + authors;
+        return String
+                .format("Book - %s - %s - %s : %.2f $", title, category,
+                        authors.isEmpty() ? "Unknown" : String.join(", ", authors), cost)
+                .replaceAll(" null | 0 ", " Unknown ");
+    }
+
+    public static Book createBook() {
+        System.out.println("---New Book---");
+        String title, category;
+        float cost;
+        String[] authors;
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter title: ");
+        title = sc.nextLine();
+
+        System.out.print("Enter category: ");
+        category = sc.nextLine();
+
+        System.out.print("Enter author name(s): ");
+        authors = sc.nextLine().split(",\\s*");
+
+        System.out.print("Enter cost: ");
+        cost = sc.nextFloat();
+
+        Book book = new Book(title, category, cost);
+        for (String author : authors) {
+            book.addAuthor(author);
+        }
+
+        return book;
     }
 }

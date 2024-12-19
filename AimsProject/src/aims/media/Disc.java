@@ -1,27 +1,38 @@
 package aims.media;
 
-public class Disc extends Media {
-    private int length;
-    private String director;
+public abstract class Disc extends Media {
 
-    // Constructor with all fields
-    public Disc(int id, String title, String category, float cost, int length, String director) {
-        super(); // Call the superclass constructor
-        setId(id);
-        setTitle(title);
-        setCategory(category);
-        setCost(cost);
-        this.length = length;
+    protected int length;
+    protected String director;
+
+    public Disc() {
+        super();
+    }
+
+    public Disc(String title) {
+        super(title);
+    }
+
+    public Disc(String title, String category, float cost) {
+        super(title, category, cost);
+    }
+
+    public Disc(String title, String category, String director, float cost) {
+        this(title, category, cost);
         this.director = director;
     }
 
-    // Getter for length
+    public Disc(String title, String category, String director, int length, float cost) {
+        this(title, category, director, cost);
+        this.length = length;
+    }
+
     public int getLength() {
         return length;
     }
 
-    // Getter for director
     public String getDirector() {
         return director;
     }
+
 }
